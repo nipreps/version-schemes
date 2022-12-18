@@ -1,15 +1,15 @@
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+requires = ["flit_scm"]
+build-backend = "flit_scm:buildapi"
 
 [project]
 name = "nipreps_versions"
 description = "Version schemes for nipreps tools"
-version = "0.0.1"
 authors = [{name = "Chris Markiewicz", email = "markiewicz@stanford.edu"}]
 readme = "README.md"
 license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: Apache Software License"]
+dynamic = ["version"]
 
 [project.urls]
 Home = "https://github.com/nipreps/version_schemes"
@@ -17,5 +17,5 @@ Home = "https://github.com/nipreps/version_schemes"
 [project.entry-points."setuptools_scm.version_scheme"]
 nipreps-degenerate = "nipreps_versions.schemes:nipreps_degenerate"
 
-[tool.setuptools.packages.find]
-where = ["src"]
+[tool.setuptools_scm]
+write_to = "src/nipreps_versions/_version.py"
