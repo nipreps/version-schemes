@@ -12,12 +12,14 @@ classifiers = ["License :: OSI Approved :: Apache Software License"]
 dynamic = ["version"]
 dependencies = [
   "setuptools_scm",
+  "packaging",
 ]
 
 [project.urls]
 Home = "https://github.com/nipreps/version_schemes"
 
 [project.entry-points."setuptools_scm.version_scheme"]
+nipreps-calver = "nipreps_versions.schemes:nipreps_calver"
 nipreps-degenerate = "nipreps_versions.schemes:nipreps_degenerate"
 
 [tool.setuptools_scm]
