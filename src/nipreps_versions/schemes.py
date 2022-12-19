@@ -55,10 +55,3 @@ def next_calver(
         return str(version_cls(f"{head_date:%y}.0.0"))
 
     return guess_next_simple_semver(version, retain=SEMVER_MINOR)
-
-
-def nipreps_degenerate(version: ScmVersion) -> str:
-    """Testing"""
-    if version.exact:
-        return version.format_with("{tag}")
-    return "1.0.0"
