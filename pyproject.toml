@@ -10,6 +10,9 @@ readme = "README.md"
 license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: Apache Software License"]
 dynamic = ["version"]
+dependencies = [
+  "setuptools_scm",
+]
 
 [project.urls]
 Home = "https://github.com/nipreps/version_schemes"
