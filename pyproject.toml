@@ -23,3 +23,10 @@ nipreps-calver = "nipreps_versions.schemes:nipreps_calver"
 
 [tool.setuptools_scm]
 write_to = "src/nipreps_versions/_version.py"
+
+[tool.mypy]
+python_version = "3.7"
+
+[[tool.mypy.overrides]]
+module = ["setuptools_scm"]
+ignore_missing_imports = true

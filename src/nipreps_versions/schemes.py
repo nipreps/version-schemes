@@ -1,9 +1,9 @@
 import re
 import warnings
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from typing import Match, Optional
 
-import packaging
+import packaging.version
 from setuptools_scm.version import (
     SEMVER_MINOR,
     ScmVersion,
@@ -25,7 +25,7 @@ def nipreps_calver(version: ScmVersion) -> str:
 
 def next_calver(
     version: ScmVersion,
-    node_date: Optional[datetime.date] = None,
+    node_date: Optional[date] = None,
     version_cls: Optional[type] = None,
 ) -> str:
     """Nipreps calver takes the form YY.MINOR.PATCH"""
