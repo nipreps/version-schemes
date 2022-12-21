@@ -1,7 +1,9 @@
 [![Tox](https://github.com/nipreps/version-schemes/actions/workflows/tox.yml/badge.svg)](https://github.com/nipreps/version-schemes/actions/workflows/tox.yml)
 
-# nipreps-version-schemes
-setuptools_scm plugin for nipreps version schemes
+# Nipreps version schemes
+
+This package provides a `setuptools_scm` plugin for version schemes used
+by the Nipreps family of projects.
 
 ## Usage
 
