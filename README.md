@@ -13,7 +13,7 @@ Add `nipreps_versions` to your `build-system.requires` list, e.g.,
 [build-system]
 requires = [
     "flit_scm",
-    "nipreps_versions @ git+https://github.com/nipreps/version-schemes.git"
+    "nipreps_versions",
 ]
 build-backend = "flit_scm:buildapi"
 ```
@@ -25,7 +25,7 @@ or
 requires = [
     "setuptools",
     "setuptools_scm",
-    "nipreps_versions @ git+https://github.com/nipreps/version-schemes.git"
+    "nipreps_versions",
 ]
 build-backend = "setuptools.build_meta"
 ```
