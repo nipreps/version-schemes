@@ -1,3 +1,5 @@
+[![Tox](https://github.com/nipreps/version-schemes/actions/workflows/tox.yml/badge.svg)](https://github.com/nipreps/version-schemes/actions/workflows/tox.yml)
+
 # nipreps-version-schemes
 setuptools_scm plugin for nipreps version schemes
 
