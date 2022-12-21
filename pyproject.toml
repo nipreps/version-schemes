@@ -27,6 +27,9 @@ include = ["tox.ini"]
 [tool.setuptools_scm]
 write_to = "src/nipreps_versions/_version.py"
 
+[tool.black]
+extend-exclude = "_version.py"
+
 [tool.isort]
 profile = "black"
 
