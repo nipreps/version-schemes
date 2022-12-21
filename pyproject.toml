@@ -8,12 +8,29 @@ description = "Version schemes for nipreps tools"
 authors = [{name = "Chris Markiewicz", email = "markiewicz@stanford.edu"}]
 readme = "README.md"
 license = {file = "LICENSE"}
-classifiers = ["License :: OSI Approved :: Apache Software License"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Software Development :: Version Control",
+  "Topic :: System :: Software Distribution",
+  "Topic :: Utilities",
+]
 dynamic = ["version"]
 dependencies = [
   "setuptools_scm",
   "packaging",
 ]
+requires-python = ">=3.7"
 
 [project.urls]
 Home = "https://github.com/nipreps/version-schemes"
