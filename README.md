@@ -1,3 +1,4 @@
+[![PyPI](https://img.shields.io/pypi/v/nipreps_versions)](https://pypi.org/project/nipreps-versions/)
 [![Tox](https://github.com/nipreps/version-schemes/actions/workflows/tox.yml/badge.svg)](https://github.com/nipreps/version-schemes/actions/workflows/tox.yml)
 
 # Nipreps version schemes
