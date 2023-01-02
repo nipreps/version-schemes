@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 from functools import partial
 
 import pytest
@@ -81,11 +81,10 @@ def test_nipreps_calver(version, expected_next):
 
 
 def test_next_calver():
-    # Omit version_cls just because it's always set when called by
-    # nipreps_calver
+    # Omit optional arguments always passed by nipreps_calver
     assert (
         next_calver(
-            m("22.1.0", node_date=date(2022, 12, 31), distance=1, branch="master")
+            m("1.0.0", distance=1, branch="master"),
         )
-        == "22.2.0"
+        == f"{datetime.utcnow():%y}.0.0"
     )
