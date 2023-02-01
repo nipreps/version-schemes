@@ -2,6 +2,10 @@
 
 ## Releases
 
+### 1.0.3 (1 February 2023)
+
+* Require `setuptools_scm >= 7` to ensure compatible installations
+
 ### 1.0.2 (1 January 2023)
 
 * Resolve test failure with year change. Make test of date-specific behavior
