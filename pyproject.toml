@@ -45,12 +45,6 @@ include = ["tox.ini", "tests/*.py"]
 [tool.setuptools_scm]
 write_to = "src/nipreps_versions/_version.py"
 
-[tool.black]
-extend-exclude = "_version.py"
-
-[tool.isort]
-profile = "black"
-
 [tool.mypy]
 python_version = "3.8"
 
@@ -63,3 +57,48 @@ omit = ["_version.py"]
 
 [tool.coverage.report]
 fail_under = 100
+
+[tool.ruff.lint]
+extend-select = [
+  "W",
+  "C90",
+  "I",
+  "N",
+  # "D",  # pydocstyle
+  "UP",
+  "YTT",
+  # "ANN",  # annotations
+  # "S",  # bandit
+  "BLE",
+  "FBT",
+  "B",
+  "A",
+  "C4",
+  "DTZ",
+  "T10",
+  "EM",
+  "EXE",
+  "ISC",
+  "ICN",
+  "PIE",
+  "T20",
+  "PYI",
+  # "PT",  # pytest-style
+  "Q",
+  "RSE",
+  "RET",
+  "SLF",
+  "SLOT",
+  # "SIM",  # simplify
+  "TID",
+  "TCH",
+  "ARG",
+  "ERA",
+  "PL",
+  "FLY",
+  "PERF",
+  "RUF",
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["nipreps_versions"]
