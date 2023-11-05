@@ -1,7 +1,5 @@
-import re
-import warnings
 from datetime import date, datetime, timezone
-from typing import Match, Optional
+from typing import Optional
 
 import packaging.version
 from setuptools_scm.version import (
