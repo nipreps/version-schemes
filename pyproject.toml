@@ -58,6 +58,9 @@ omit = ["_version.py"]
 [tool.coverage.report]
 fail_under = 100
 
+[tool.ruff]
+extend-exclude = ["_version.py"]
+
 [tool.ruff.lint]
 extend-select = [
   "W",
