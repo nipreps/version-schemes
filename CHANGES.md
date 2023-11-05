@@ -2,6 +2,13 @@
 
 ## Releases
 
+### 1.0.4 (4 November 2023)
+
+* Update tests to accommodate changes in `setuptools_scm` API and generated files
+* Drop Python 3.7 support, test on 3.12
+* Switch from black and isort to ruff
+* Convert deprecated `datetime.utcnow()` to `datetime.now(tz=timezone.utc)`
+
 ### 1.0.3 (1 February 2023)
 
 * Require `setuptools_scm >= 7` to ensure compatible installations
