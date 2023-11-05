@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from functools import partial
 
 import pytest
@@ -86,5 +86,5 @@ def test_next_calver():
         next_calver(
             m("1.0.0", distance=1, branch="master"),
         )
-        == f"{datetime.utcnow():%y}.0.0"
+        == f"{datetime.now(timezone.utc):%y}.0.0"
     )
