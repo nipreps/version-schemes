@@ -58,5 +58,8 @@ python_version = "3.7"
 module = ["setuptools_scm.version", "setuptools_scm.config"]
 ignore_missing_imports = true
 
+[tool.coverage.run]
+omit = ["_version.py"]
+
 [tool.coverage.report]
 fail_under = 100
