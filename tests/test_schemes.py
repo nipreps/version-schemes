@@ -2,8 +2,8 @@ from datetime import date, datetime
 from functools import partial
 
 import pytest
-from setuptools_scm import Configuration
-from setuptools_scm.version import meta
+from setuptools_scm import Configuration  # type: ignore
+from setuptools_scm.version import meta  # type: ignore
 
 from nipreps_versions.schemes import next_calver, nipreps_calver
 
