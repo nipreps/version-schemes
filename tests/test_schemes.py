@@ -3,7 +3,7 @@ from functools import partial
 
 import pytest
 from setuptools_scm import Configuration  # type: ignore
-from setuptools_scm.version import meta  # type: ignore
+from setuptools_scm.version import ScmVersion, meta
 
 from nipreps_versions.schemes import next_calver, nipreps_calver
 
@@ -11,7 +11,7 @@ m = partial(meta, config=Configuration())
 
 
 @pytest.mark.parametrize(
-    "version, expected_next",
+    ("version", "expected_next"),
     [
         pytest.param(m("22.1.0"), "22.1.0", id="exact"),
         pytest.param(
@@ -76,11 +76,11 @@ m = partial(meta, config=Configuration())
         ),
     ],
 )
-def test_nipreps_calver(version, expected_next):
+def test_nipreps_calver(version: ScmVersion, expected_next: str) -> None:
     assert nipreps_calver(version) == expected_next
 
 
-def test_next_calver():
+def test_next_calver() -> None:
     # Omit optional arguments always passed by nipreps_calver
     assert (
         next_calver(

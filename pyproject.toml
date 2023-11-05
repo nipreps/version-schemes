@@ -15,11 +15,11 @@ classifiers = [
   "Programming Language :: Python",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.7",
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
   "Topic :: Software Development :: Libraries",
   "Topic :: Software Development :: Version Control",
   "Topic :: System :: Software Distribution",
@@ -30,7 +30,7 @@ dependencies = [
   "setuptools_scm >=7",
   "packaging",
 ]
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 
 [project.urls]
 Home = "https://github.com/nipreps/version-schemes"
@@ -45,14 +45,8 @@ include = ["tox.ini", "tests/*.py"]
 [tool.setuptools_scm]
 write_to = "src/nipreps_versions/_version.py"
 
-[tool.black]
-extend-exclude = "_version.py"
-
-[tool.isort]
-profile = "black"
-
 [tool.mypy]
-python_version = "3.7"
+python_version = "3.8"
 
 [[tool.mypy.overrides]]
 module = ["setuptools_scm.version", "setuptools_scm.config"]
@@ -63,3 +57,51 @@ omit = ["_version.py"]
 
 [tool.coverage.report]
 fail_under = 100
+
+[tool.ruff]
+extend-exclude = ["_version.py"]
+
+[tool.ruff.lint]
+extend-select = [
+  "W",
+  "C90",
+  "I",
+  "N",
+  # "D",  # pydocstyle
+  "UP",
+  "YTT",
+  "ANN",  # annotations
+  # "S",  # bandit
+  "BLE",
+  "FBT",
+  "B",
+  "A",
+  "C4",
+  "DTZ",
+  "T10",
+  "EM",
+  "EXE",
+  "ISC",
+  "ICN",
+  "PIE",
+  "T20",
+  "PYI",
+  "PT",  # pytest-style
+  "Q",
+  "RSE",
+  "RET",
+  "SLF",
+  "SLOT",
+  # "SIM",  # simplify
+  "TID",
+  "TCH",
+  "ARG",
+  "ERA",
+  "PL",
+  "FLY",
+  "PERF",
+  "RUF",
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["nipreps_versions"]
