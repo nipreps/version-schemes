@@ -15,11 +15,11 @@ classifiers = [
   "Programming Language :: Python",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.7",
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
   "Topic :: Software Development :: Libraries",
   "Topic :: Software Development :: Version Control",
   "Topic :: System :: Software Distribution",
@@ -30,7 +30,7 @@ dependencies = [
   "setuptools_scm >=7",
   "packaging",
 ]
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 
 [project.urls]
 Home = "https://github.com/nipreps/version-schemes"
@@ -52,7 +52,7 @@ extend-exclude = "_version.py"
 profile = "black"
 
 [tool.mypy]
-python_version = "3.7"
+python_version = "3.8"
 
 [[tool.mypy.overrides]]
 module = ["setuptools_scm.version", "setuptools_scm.config"]
