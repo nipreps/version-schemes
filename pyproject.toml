@@ -67,7 +67,7 @@ extend-select = [
   # "D",  # pydocstyle
   "UP",
   "YTT",
-  # "ANN",  # annotations
+  "ANN",  # annotations
   # "S",  # bandit
   "BLE",
   "FBT",
