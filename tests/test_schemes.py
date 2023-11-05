@@ -11,7 +11,7 @@ m = partial(meta, config=Configuration())
 
 
 @pytest.mark.parametrize(
-    "version, expected_next",
+    ("version", "expected_next"),
     [
         pytest.param(m("22.1.0"), "22.1.0", id="exact"),
         pytest.param(

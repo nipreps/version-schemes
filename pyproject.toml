@@ -83,7 +83,7 @@ extend-select = [
   "PIE",
   "T20",
   "PYI",
-  # "PT",  # pytest-style
+  "PT",  # pytest-style
   "Q",
   "RSE",
   "RET",
