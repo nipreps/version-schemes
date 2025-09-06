@@ -1,6 +1,6 @@
 [build-system]
-requires = ["flit_scm"]
-build-backend = "flit_scm:buildapi"
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
 
 [project]
 name = "nipreps_versions"
@@ -46,11 +46,18 @@ test = [
 style = ["ruff"]
 types = ["mypy", "pyright", "ty"]
 
-[tool.flit.sdist]
-include = ["tox.ini", "uv.lock", "tests/*.py"]
+[tool.pdm]
+distribution = true
 
-[tool.setuptools_scm]
-write_to = "src/nipreps_versions/_version.py"
+[tool.pdm.build]
+source-includes = [
+  "tests/",
+  "tox.ini",
+  "uv.lock",
+]
+
+[tool.pdm.version]
+source = "scm"
 
 [tool.mypy]
 python_version = "3.10"
@@ -60,14 +67,10 @@ module = ["setuptools_scm.version", "setuptools_scm.config"]
 ignore_missing_imports = true
 
 [tool.coverage.run]
-omit = ["_version.py"]
 parallel = true
 
 [tool.coverage.report]
 fail_under = 100
-
-[tool.ruff]
-extend-exclude = ["_version.py"]
 
 [tool.ruff.lint]
 extend-select = [
