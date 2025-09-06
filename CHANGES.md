@@ -2,6 +2,11 @@
 
 ## Releases
 
+### Unreleased
+
+* Drop Python 3.8 and 3.9 support, test up to Python 3.14
+* Check for potential `None` case identified by type checking
+
 ### 1.0.4 (4 November 2023)
 
 * Update tests to accommodate changes in `setuptools_scm` API and generated files
