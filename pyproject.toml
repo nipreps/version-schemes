@@ -44,7 +44,7 @@ test = [
     "pytest>=8.3",
 ]
 style = ["ruff"]
-types = ["mypy", "pytest"]
+types = ["mypy", "pyright", "ty"]
 
 [tool.flit.sdist]
 include = ["tox.ini", "uv.lock", "tests/*.py"]
