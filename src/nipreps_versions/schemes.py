@@ -1,6 +1,6 @@
 from datetime import date, datetime, timezone
 
-import packaging.version
+from packaging.version import Version
 from setuptools_scm.version import (
     SEMVER_MINOR,
     ScmVersion,
@@ -23,11 +23,11 @@ def nipreps_calver(version: ScmVersion) -> str:
 def next_calver(
     version: ScmVersion,
     node_date: date | None = None,
-    version_cls: type | None = None,
+    version_cls: type[Version] | None = None,
 ) -> str:
     """Nipreps calver takes the form YY.MINOR.PATCH"""
     if version_cls is None:
-        version_cls = packaging.version.Version
+        version_cls = Version
 
     head_date = node_date or datetime.now(timezone.utc).date()
 

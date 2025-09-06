@@ -2,7 +2,7 @@ from datetime import date, datetime, timezone
 from functools import partial
 
 import pytest
-from setuptools_scm import Configuration  # type: ignore
+from setuptools_scm import Configuration
 from setuptools_scm.version import ScmVersion, meta
 
 from nipreps_versions.schemes import next_calver, nipreps_calver

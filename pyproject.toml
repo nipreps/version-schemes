@@ -61,10 +61,8 @@ source = "scm"
 
 [tool.mypy]
 python_version = "3.10"
-
-[[tool.mypy.overrides]]
-module = ["setuptools_scm.version", "setuptools_scm.config"]
-ignore_missing_imports = true
+strict = true
+extra_checks = true
 
 [tool.coverage.run]
 parallel = true
