@@ -111,6 +111,3 @@ extend-select = [
   "PERF",
   "RUF",
 ]
-
-[tool.ruff.lint.isort]
-known-first-party = ["nipreps_versions"]
