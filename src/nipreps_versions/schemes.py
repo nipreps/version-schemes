@@ -1,5 +1,4 @@
 from datetime import date, datetime, timezone
-from typing import Optional
 
 import packaging.version
 from setuptools_scm.version import (
@@ -23,8 +22,8 @@ def nipreps_calver(version: ScmVersion) -> str:
 
 def next_calver(
     version: ScmVersion,
-    node_date: Optional[date] = None,
-    version_cls: Optional[type] = None,
+    node_date: date | None = None,
+    version_cls: type | None = None,
 ) -> str:
     """Nipreps calver takes the form YY.MINOR.PATCH"""
     if version_cls is None:
