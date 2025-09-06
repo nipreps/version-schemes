@@ -7,19 +7,18 @@ name = "nipreps_versions"
 description = "Version schemes for nipreps tools"
 authors = [{name = "Chris Markiewicz", email = "markiewicz@stanford.edu"}]
 readme = "README.md"
-license = {file = "LICENSE"}
+license = "Apache-2.0"
 classifiers = [
   "Development Status :: 4 - Beta",
   "Intended Audience :: Developers",
-  "License :: OSI Approved :: Apache Software License",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
   "Topic :: Software Development :: Libraries",
   "Topic :: Software Development :: Version Control",
   "Topic :: System :: Software Distribution",
@@ -28,9 +27,9 @@ classifiers = [
 dynamic = ["version"]
 dependencies = [
   "setuptools_scm >=7",
-  "packaging",
+  "packaging>=17",
 ]
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 
 [project.urls]
 Home = "https://github.com/nipreps/version-schemes"
@@ -39,14 +38,22 @@ Home = "https://github.com/nipreps/version-schemes"
 [project.entry-points."setuptools_scm.version_scheme"]
 nipreps-calver = "nipreps_versions.schemes:nipreps_calver"
 
+[dependency-groups]
+test = [
+    "coverage[toml]>=7.8",
+    "pytest>=8.3",
+]
+style = ["ruff"]
+types = ["mypy", "pyright", "ty"]
+
 [tool.flit.sdist]
-include = ["tox.ini", "tests/*.py"]
+include = ["tox.ini", "uv.lock", "tests/*.py"]
 
 [tool.setuptools_scm]
 write_to = "src/nipreps_versions/_version.py"
 
 [tool.mypy]
-python_version = "3.8"
+python_version = "3.10"
 
 [[tool.mypy.overrides]]
 module = ["setuptools_scm.version", "setuptools_scm.config"]
@@ -54,6 +61,7 @@ ignore_missing_imports = true
 
 [tool.coverage.run]
 omit = ["_version.py"]
+parallel = true
 
 [tool.coverage.report]
 fail_under = 100
