@@ -39,14 +39,15 @@ def next_calver(
         return guess_next_version(version)
 
     # rel/ and maint/ branches tell us the next version
-    branch_ver_data = _parse_version_tag(version.branch.split("/")[-1], version.config)
-    if branch_ver_data is not None:
-        branch_ver = branch_ver_data["version"]
-        tag_ver_up_to_minor = str(version.tag).split(".")[:SEMVER_MINOR]
-        branch_ver_up_to_minor = branch_ver.split(".")[:SEMVER_MINOR]
-        if branch_ver_up_to_minor == tag_ver_up_to_minor:
-            # We're in a release/maintenance branch, next is a patch/rc/beta bump:
-            return guess_next_version(version)
+    if (branch := version.branch) is not None:
+        branch_ver_data = _parse_version_tag(branch.split("/")[-1], version.config)
+        if branch_ver_data is not None:
+            branch_ver = branch_ver_data["version"]
+            tag_ver_up_to_minor = str(version.tag).split(".")[:SEMVER_MINOR]
+            branch_ver_up_to_minor = branch_ver.split(".")[:SEMVER_MINOR]
+            if branch_ver_up_to_minor == tag_ver_up_to_minor:
+                # We're in a release/maintenance branch, next is a patch/rc/beta bump:
+                return guess_next_version(version)
 
     if head_date.year % 1000 != tag.major:
         return str(version_cls(f"{head_date:%y}.0.0"))
