@@ -48,7 +48,7 @@ style = ["ruff"]
 types = ["mypy", "pytest"]
 
 [tool.flit.sdist]
-include = ["tox.ini", "tests/*.py"]
+include = ["tox.ini", "uv.lock", "tests/*.py"]
 
 [tool.setuptools_scm]
 write_to = "src/nipreps_versions/_version.py"
