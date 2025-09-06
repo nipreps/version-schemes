@@ -42,7 +42,6 @@ nipreps-calver = "nipreps_versions.schemes:nipreps_calver"
 test = [
     "coverage[toml]>=7.8",
     "pytest>=8.3",
-    "pytest-cov>=6.1",
 ]
 style = ["ruff"]
 types = ["mypy", "pytest"]
@@ -62,6 +61,7 @@ ignore_missing_imports = true
 
 [tool.coverage.run]
 omit = ["_version.py"]
+parallel = true
 
 [tool.coverage.report]
 fail_under = 100
