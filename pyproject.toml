@@ -76,7 +76,7 @@ extend-select = [
   "C90",
   "I",
   "N",
-  # "D",  # pydocstyle
+  "D",  # pydocstyle
   "UP",
   "YTT",
   "ANN",  # annotations
@@ -111,3 +111,6 @@ extend-select = [
   "PERF",
   "RUF",
 ]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"

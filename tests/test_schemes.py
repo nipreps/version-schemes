@@ -1,3 +1,5 @@
+"""Tests for nipreps_versions."""
+
 from datetime import date
 from functools import partial
 

@@ -1,3 +1,5 @@
+"""Local build hooks for pdm backend."""
+
 from pathlib import Path
 from shutil import copy
 from subprocess import run
@@ -6,6 +8,7 @@ from pdm.backend.hooks import Context
 
 
 def pdm_build_update_files(context: Context, files: dict[str, Path]) -> None:
+    """Run `uv lock` with updated pyproject.toml in the build directory."""
     if context.target == "sdist":
         context.ensure_build_dir()
         copy(files["uv.lock"], context.build_dir / "uv.lock")
