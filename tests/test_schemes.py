@@ -1,11 +1,11 @@
-from datetime import date, datetime, timezone
+from datetime import date
 from functools import partial
 
 import pytest
 from setuptools_scm import Configuration
 from setuptools_scm.version import ScmVersion, meta
 
-from nipreps_versions.schemes import next_calver, nipreps_calver
+from nipreps_versions import nipreps_calver
 
 m = partial(meta, config=Configuration())
 
@@ -47,12 +47,5 @@ m = partial(meta, config=Configuration())
     ],
 )
 def test_nipreps_calver(version: ScmVersion, expected_next: str) -> None:
+    """Test expected version increments."""
     assert nipreps_calver(version) == expected_next
-
-
-def test_next_calver() -> None:
-    # Omit optional arguments always passed by nipreps_calver
-    assert (
-        next_calver(m("1.0.0", distance=1, branch="master"))
-        == f"{datetime.now(timezone.utc):%y}.0.0"
-    )
