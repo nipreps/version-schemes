@@ -1,6 +1,6 @@
 [build-system]
-requires = ["pdm-backend", "uv"]
-build-backend = "pdm.backend"
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
 
 [project]
 name = "nipreps_versions"
@@ -26,7 +26,7 @@ classifiers = [
 ]
 dynamic = ["version"]
 dependencies = [
-  "setuptools_scm >=7",
+  "vcs-versioning >= 1.0.1",
   "packaging>=17",
 ]
 requires-python = ">=3.10"
@@ -35,7 +35,7 @@ requires-python = ">=3.10"
 Home = "https://github.com/nipreps/version-schemes"
 "Nipreps" = "https://www.nipreps.org"
 
-[project.entry-points."setuptools_scm.version_scheme"]
+[project.entry-points."vcs_versioning.version_scheme"]
 nipreps-calver = "nipreps_versions.schemes:nipreps_calver"
 
 [dependency-groups]
@@ -46,18 +46,19 @@ test = [
 style = ["ruff"]
 types = ["mypy", "pyright", "ty"]
 
-[tool.pdm]
-distribution = true
+[tool.hatch.version]
+source = "vcs"
 
-[tool.pdm.build]
-source-includes = [
-  "tests/",
-  "tox.ini",
-  "uv.lock",
+[tool.hatch.build.targets.sdist]
+include = [
+  "/src",
+  "/tests",
+  "/tox.ini",
+  "/uv.lock",
 ]
 
-[tool.pdm.version]
-source = "scm"
+[tool.hatch.build.targets.wheel]
+packages = ["src/nipreps_versions"]
 
 [tool.mypy]
 python_version = "3.10"
