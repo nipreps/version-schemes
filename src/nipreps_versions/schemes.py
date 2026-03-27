@@ -1,4 +1,4 @@
-from datetime import date, datetime, timezone
+from datetime import date
 
 from packaging.version import Version
 from vcs_versioning import ScmVersion

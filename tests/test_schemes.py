@@ -4,12 +4,8 @@ from functools import partial
 import pytest
 from vcs_versioning import Configuration, ScmVersion
 from vcs_versioning._scm_version import meta
-from vcs_versioning.overrides import ensure_context
 
 from nipreps_versions.schemes import next_calver, nipreps_calver
-
-# Ensure a context is active at import time for parametrization
-ensure_context("VCS_VERSIONING").__enter__()
 
 m = partial(meta, config=Configuration())
 
