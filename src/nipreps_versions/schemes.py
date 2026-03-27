@@ -1,10 +1,12 @@
 from datetime import date, datetime, timezone
 
 from packaging.version import Version
-from setuptools_scm.version import (
+from vcs_versioning import ScmVersion
+
+# Internal APIs to keep tabs on
+from vcs_versioning._scm_version import _parse_version_tag
+from vcs_versioning._version_schemes import (
     SEMVER_MINOR,
-    ScmVersion,
-    _parse_version_tag,
     guess_next_simple_semver,
     guess_next_version,
 )
@@ -29,7 +31,8 @@ def next_calver(
     if version_cls is None:
         version_cls = Version
 
-    head_date = node_date or datetime.now(timezone.utc).date()
+    # use provided time to allow context access
+    head_date = node_date or version.time.date()
 
     tag = version_cls(str(version.tag))
 
