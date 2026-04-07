@@ -44,6 +44,11 @@ m = partial(meta, config=Configuration())
             "23.0.0.dev1",
             id="dev_tag",
         ),
+        pytest.param(
+            m("26.0.0", distance=1, branch="maint/26.1.xx"),
+            "26.1.0.dev1",
+            id="invalid_branch_version",
+        ),
     ],
 )
 def test_nipreps_calver(version: ScmVersion, expected_next: str) -> None:
