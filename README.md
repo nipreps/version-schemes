@@ -3,7 +3,7 @@
 
 # Nipreps version schemes
 
-This package provides a `setuptools_scm` plugin for version schemes used
+This package provides a `vcs-versioning` plugin for version schemes used
 by the Nipreps family of projects.
 
 ## Usage
@@ -13,25 +13,24 @@ Add `nipreps_versions` to your `build-system.requires` list, e.g.,
 ```TOML
 [build-system]
 requires = [
-    "flit_scm",
+    "hatchling",
+    "hatch-vcs",
     "nipreps_versions",
 ]
-build-backend = "flit_scm:buildapi"
+build-backend = "hatchling.build"
 ```
 
-or
+Then request the `nipreps-calver` version scheme:
 
 ```TOML
-[build-system]
-requires = [
-    "setuptools",
-    "setuptools_scm",
-    "nipreps_versions",
-]
-build-backend = "setuptools.build_meta"
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.version.raw-options]
+version_scheme = "nipreps-calver"
 ```
 
-Then request a nipreps version scheme:
+The scheme can also be used by other `vcs-versioning` based tools (like `setuptools_scm >= 8.0`) by referencing the `nipreps-calver` name in their respective configuration sections:
 
 ```TOML
 [tool.setuptools_scm]

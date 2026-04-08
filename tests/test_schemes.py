@@ -1,13 +1,16 @@
 from datetime import date, datetime, timezone
-from functools import partial
 
 import pytest
-from setuptools_scm import Configuration
-from setuptools_scm.version import ScmVersion, meta
+from vcs_versioning import Configuration, ScmVersion
+from vcs_versioning._scm_version import meta
+from vcs_versioning.overrides import GlobalOverrides
 
 from nipreps_versions.schemes import next_calver, nipreps_calver
 
-m = partial(meta, config=Configuration())
+
+def m(*args, **kwargs) -> ScmVersion:  # type:ignore[no-untyped-def]  # noqa: ANN002,ANN003
+    with GlobalOverrides.from_env("SETUPTOOLS_SCM"):
+        return meta(*args, config=Configuration(), **kwargs)
 
 
 @pytest.mark.parametrize(
@@ -43,6 +46,11 @@ m = partial(meta, config=Configuration())
             m("23.0.0.dev0", node_date=date(2022, 12, 31), distance=1, branch="master"),
             "23.0.0.dev1",
             id="dev_tag",
+        ),
+        pytest.param(
+            m("26.0.0", distance=1, branch="maint/26.1.xx"),
+            "26.1.0.dev1",
+            id="invalid_branch_version",
         ),
     ],
 )

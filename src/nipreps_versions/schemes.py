@@ -1,13 +1,16 @@
-from datetime import date, datetime, timezone
+from contextlib import suppress
+from datetime import date
 
 from packaging.version import Version
+
+# Internal APIs to keep tabs on
 from setuptools_scm.version import (
     SEMVER_MINOR,
-    ScmVersion,
-    _parse_version_tag,
     guess_next_simple_semver,
     guess_next_version,
+    tag_to_version,
 )
+from vcs_versioning import ScmVersion
 
 
 def nipreps_calver(version: ScmVersion) -> str:
@@ -29,7 +32,8 @@ def next_calver(
     if version_cls is None:
         version_cls = Version
 
-    head_date = node_date or datetime.now(timezone.utc).date()
+    # use provided time to allow context access
+    head_date = node_date or version.time.date()
 
     tag = version_cls(str(version.tag))
 
@@ -40,14 +44,17 @@ def next_calver(
 
     # rel/ and maint/ branches tell us the next version
     if (branch := version.branch) is not None:
-        branch_ver_data = _parse_version_tag(branch.split("/")[-1], version.config)
-        if branch_ver_data is not None:
-            branch_ver = branch_ver_data["version"]
-            tag_ver_up_to_minor = str(version.tag).split(".")[:SEMVER_MINOR]
-            branch_ver_up_to_minor = branch_ver.split(".")[:SEMVER_MINOR]
-            if branch_ver_up_to_minor == tag_ver_up_to_minor:
-                # We're in a release/maintenance branch, next is a patch/rc/beta bump:
-                return guess_next_version(version)
+        # maint/ branches may end in ".x", which parse as invalid versions
+        branch_series = branch.split("/")[-1].replace(".x", ".0")
+        if version.config.tag_regex.match(branch_series):
+            branch_ver = None
+            with suppress(Exception):
+                branch_ver = tag_to_version(branch_series, version.config)
+
+            match branch_ver:
+                case Version(major=tag.major, minor=tag.minor):
+                    # We're in a release/maintenance branch, next is a patch/rc/beta bump
+                    return guess_next_version(version)
 
     if head_date.year % 1000 != tag.major:
         return str(version_cls(f"{head_date:%y}.0.0"))
