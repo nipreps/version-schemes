@@ -2,6 +2,10 @@
 
 ## Releases
 
+### 1.2.0 (8 April 2026)
+
+* Compatibility with `setuptools_scm >=10`, `vcs-versioning>=1`
+
 ### 1.1.0 (7 September 2025)
 
 * API change: Remove `nipreps_versions.__version__`
