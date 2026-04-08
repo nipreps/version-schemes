@@ -1,13 +1,16 @@
 from datetime import date, datetime, timezone
-from functools import partial
 
 import pytest
 from vcs_versioning import Configuration, ScmVersion
 from vcs_versioning._scm_version import meta
+from vcs_versioning.overrides import GlobalOverrides
 
 from nipreps_versions.schemes import next_calver, nipreps_calver
 
-m = partial(meta, config=Configuration())
+
+def m(*args, **kwargs) -> ScmVersion:  # type:ignore[no-untyped-def]  # noqa: ANN002,ANN003
+    with GlobalOverrides.from_env("SETUPTOOLS_SCM"):
+        return meta(*args, config=Configuration(), **kwargs)
 
 
 @pytest.mark.parametrize(
