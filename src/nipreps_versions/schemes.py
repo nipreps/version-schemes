@@ -1,3 +1,4 @@
+from contextlib import suppress
 from datetime import date
 
 from packaging.version import Version
@@ -46,19 +47,14 @@ def next_calver(
         # maint/ branches may end in ".x", which parse as invalid versions
         branch_series = branch.split("/")[-1].replace(".x", ".0")
         if version.config.tag_regex.match(branch_series):
-            try:
-                branch_ver = tag_to_version(branch_series, version.config)
-            except Exception:  # noqa: BLE001
-                branch_ver = None
-        else:
             branch_ver = None
+            with suppress(Exception):
+                branch_ver = tag_to_version(branch_series, version.config)
 
-        if branch_ver is not None and (branch_ver.major, branch_ver.minor) == (
-            tag.major,
-            tag.minor,
-        ):
-            # We're in a release/maintenance branch, next is a patch/rc/beta bump
-            return guess_next_version(version)
+            match branch_ver:
+                case Version(major=tag.major, minor=tag.minor):
+                    # We're in a release/maintenance branch, next is a patch/rc/beta bump
+                    return guess_next_version(version)
 
     if head_date.year % 1000 != tag.major:
         return str(version_cls(f"{head_date:%y}.0.0"))
